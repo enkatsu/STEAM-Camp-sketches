@@ -6,9 +6,9 @@ Client client;
 String host = "127.0.0.1";
 
 void setup() {
-  size(600, 600);
+  size(400, 400);
   println(join(Serial.list(), ", "));
-  serial = new Serial(this, "your arduino port", 9600);
+  serial = new Serial(this, "/dev/cu.usbmodem1101", 9600);
   client = new Client(this, host, 32000);
   background(0);
   noStroke();
@@ -17,11 +17,8 @@ void setup() {
 
 void draw() {
   if (client.available() > 0) {
-    String message = client.readStringUntil('\n');
-    if (message != null) {
-      message = trim(message);
-      int value = parseInt(message);
-      serial.write(value);
-    }
+    int value = client.read();
+    println(value);
+    serial.write(value);
   }
 }
