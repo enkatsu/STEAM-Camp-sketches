@@ -1,15 +1,15 @@
-const uint8_t speeds = 255;
-int AinPin1 = 11;
-int AinPin2 = 12;
-int BinPin1 = 8;
-int BinPin2 = 9;
+int speeds = 255;
+int aInPin1 = 11;
+int aInPin2 = 12;
+int bInPin1 = 8;
+int bInPin2 = 9;
 
 void setup() {
   Serial.begin(9600);
-  pinMode(AinPin1, OUTPUT);
-  pinMode(AinPin2, OUTPUT);
-  pinMode(BinPin1, OUTPUT);
-  pinMode(BinPin2, OUTPUT);
+  pinMode(aInPin1, OUTPUT);
+  pinMode(aInPin2, OUTPUT);
+  pinMode(bInPin1, OUTPUT);
+  pinMode(bInPin2, OUTPUT);
   delay(1000);
 }
 
@@ -21,11 +21,15 @@ void loop() {
 }
 
 void rotateFun() {
-  analogWrite(AinPin1, speeds);
-  analogWrite(AinPin2, 0);
-  analogWrite(BinPin1, speeds);
-  analogWrite(BinPin2, 0);
+  analogWrite(aInPin1, speeds);
+  analogWrite(aInPin2, 0);
+  analogWrite(bInPin1, speeds);
+  analogWrite(bInPin2, 0);
   delay(1000);
+  analogWrite(aInPin1, 0);
+  analogWrite(aInPin2, 0);
+  analogWrite(bInPin1, 0);
+  analogWrite(bInPin2, 0);
 }
 
 void clearBuffer() {
