@@ -8,7 +8,7 @@ String host = "127.0.0.1";
 void setup() {
   size(400, 400);
   println(join(Serial.list(), ", "));
-  serial = new Serial(this, "/dev/cu.usbmodem1101", 9600);
+  serial = new Serial(this, "ARDUINO_PORT", 9600);
   client = new Client(this, host, 32000);
   background(0);
   noStroke();

@@ -1,13 +1,11 @@
 #include <Servo.h>
 Servo servo;
-int servoPin = 6;
-int ledPin = 5;
-int servoDelay = 50;
+int servoPin = 3;
+int servoDelay = 30;
+int moterSpeed = 0;
 
 void setup() {
   Serial.begin(9600);
-  pinMode(ledPin, OUTPUT);
-  analogWrite(ledPin, 255);
   servo.attach(servoPin);
 }
 
@@ -19,16 +17,23 @@ void loop() {
 }
 
 void action() {
-  for (int i = 0; i <= 180; i++) {
+  for (int i = 0; i <= 100; i++) {
     servo.write(i);
     delay(servoDelay);
   }
+  moterSpeed = 255;
+  analogWrite(5, moterSpeed);
+  analogWrite(6, 0);
   delay(1000);
-  for (int i = 180; i >= 0; i--) {
+  for (int i = 100; i >= 0; i--) {
     servo.write(i);
     delay(servoDelay);
   }
-  delay(1000);
+  delay(5000);
+  moterSpeed = 0;
+  analogWrite(5, moterSpeed);
+  analogWrite(6, 0);
+  delay(2000);
 }
 
 void clearBuffer() {

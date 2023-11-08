@@ -1,11 +1,17 @@
+int switchPin = 12;
+int pValue = LOW;
 
 void setup() {
   Serial.begin(9600);
-  pinMode(A0, INPUT);
+  pinMode(switchPin, INPUT);
 }
 
 void loop() {
-  int value = analogRead(A0) / 4;
-  Serial.write(value);
+  int value = digitalRead(switchPin);
+  if (pValue == HIGH && value == LOW) {
+    Serial.write(1);
+  }
+  pValue = value;
+
   delay(100);
 }
