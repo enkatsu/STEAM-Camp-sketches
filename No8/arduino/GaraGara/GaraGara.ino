@@ -1,9 +1,10 @@
 #include <Stepper.h>
-int sp_speed;     //回転スピード
-int sp_step = 1;  //ステップ数
-int round_step = 400;
 
-Stepper stepper(round_step, 11, 10, 9, 8);
+int spStep = 1;
+int roundStep = 400;
+int spSpeed = 50;
+
+Stepper stepper(roundStep, 11, 10, 9, 8);
 
 void setup() {
   Serial.begin(9600);
@@ -17,20 +18,19 @@ void loop() {
 }
 
 void action() {
-  sp_speed = 50;  //回転スピード
   float startTime = millis();
-  float endTime = 5000;  // 5秒間回転
+  float endTime = 5000;
 
   while (millis() - startTime < endTime) {
-    stepper.setSpeed(sp_speed);
-    stepper.step(sp_step);
+    stepper.setSpeed(spSpeed);
+    stepper.step(spStep);
   }
 
   startTime = millis();
 
   while (millis() - startTime < endTime) {
-    stepper.setSpeed(sp_speed);
-    stepper.step(-sp_step);
+    stepper.setSpeed(spSpeed);
+    stepper.step(-spStep);
   }
 }
 
